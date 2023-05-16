@@ -6,11 +6,13 @@ interface RadiosProps {
 
 function Radios({ options }: RadiosProps) {
     return (
-        <RadioGroup.Root className="col-span-full flex">
+        <RadioGroup.Root
+            className="col-span-full flex"
+            defaultValue={options[0]}>
             {options.map((item) => {
                 const itemLowerCase = item.toLowerCase();
                 return (
-                    <div key={item} className="flex w-1/2 items-center gap-5">
+                    <div key={item} className="flex w-1/2 items-center gap-4">
                         <RadioGroup.Item
                             className="flex h-8 w-8 items-center justify-center rounded-full border border-metal-200 data-checked:bg-blue-alpha"
                             value={item}
