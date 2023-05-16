@@ -2,6 +2,7 @@
   "name": "bmi-calculator-ts",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,6 +11,23 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.4.1"
+    "@astrojs/react": "^2.1.3",
+    "@astrojs/tailwind": "^3.1.2",
+    "@fontsource/inter": "^4.5.15",
+    "@headlessui/react": "^1.7.14",
+    "@headlessui/tailwindcss": "^0.1.3",
+    "@radix-ui/react-radio-group": "^1.1.2",
+    "@tailwindcss/forms": "^0.5.3",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "astro": "^2.4.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.3.2"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.8",
+    "prettier-plugin-astro": "^0.8.1",
+    "prettier-plugin-tailwindcss": "^0.2.8"
   }
 }

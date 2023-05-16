@@ -1,81 +1,145 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+// Fonts / CSS
+import "@fontsource/inter/variable-full.css";
+// Images
+import logo from "../images/logo.svg";
+import manEatingImg from "../images/image-man-eating.webp";
+import eatingIcon from "../images/icon-eating.svg";
+import exerciseIcon from "../images/icon-exercise.svg";
+import sleepIcon from "../images/icon-sleep.svg";
+import ageIcon from "../images/icon-age.svg";
+import raceIcon from "../images/icon-race.svg";
+import pregnancyIcon from "../images/icon-pregnancy.svg";
+import muscleIcon from "../images/icon-muscle.svg";
+import genderIcon from "../images/icon-gender.svg";
+// Components
+import Calculator from "../components/calculator/Calculator";
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
-</Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
-</style>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="shortcut icon"
+            href="/favicon-32x32.png"
+            type="image/x-icon"
+        />
+        <title>BMI Calculator ~ Frontend Mentor Solution</title>
+    </head>
+    <body class="px-6 pb-24 pt-8">
+        <main>
+            <!-- background accent shape -->
+            <div
+                class="absolute inset-0 -z-10 h-[640px] w-full rounded-b-accent bg-accent-gradient"
+                aria-hidden>
+            </div>
+            <!-- main content start -->
+            <img
+                class="mx-auto mb-6 w-10"
+                src={logo}
+                alt="BMI Calculator logo"
+            />
+            <h1 class="mb-6 text-center text-heading-lg text-metal-800">
+                Body Mass Index Calculator
+            </h1>
+            <p class="mb-12 text-center text-body-sm text-metal-600">
+                Better understand your weight in relation to your height using
+                our body mass index (BM) calculator. While BMI is not the sole
+                determinant of a healthy weight, it offers a valuable starting
+                point to evaluate your overall health and well-being.
+            </p>
+            <Calculator client:load />
+            <img src={manEatingImg} alt="man eating with chopsticks" />
+            <h2>What your BMI result means</h2>
+            <p>
+                A BMI range of 18.5 to 24.9 is considered a 'healthy weight.'
+                Maintaining a healthy weight may lower your chances of
+                experiencing health issues later on, such as obesity and type 2
+                diabetes. Aim for a nutritious diet with reduced fat and sugar
+                content, incorporating ample fruits and vegetables.
+                Additionally, strive for regular physical activity, ideally
+                about 30 minutes daily for five days a week.
+            </p>
+            <div>
+                <img src={eatingIcon} alt="" />
+                <h3>Healthy eating</h3>
+                <p>
+                    Healthy eating promotes weight control, disease prevention,
+                    better digestion, immunity, mental clarity, and mood.
+                </p>
+            </div>
+            <div>
+                <img src={exerciseIcon} alt="" />
+                <h3>Regular exercise</h3>
+                <p>
+                    Exercise improves fitness, aids weight control, elevates
+                    mood, and reduces disease risk, fostering wellness and
+                    longevity.
+                </p>
+            </div>
+            <div>
+                <img src={sleepIcon} alt="" />
+                <h3>Adequate sleep</h3>
+                <p>
+                    Sleep enhances mental clarity, emotional stability, and
+                    physical wellness, promoting overall restoration and
+                    rejuvenation.
+                </p>
+            </div>
+            <h2>Limitations of BMI</h2>
+            <p>
+                Although BMI is often a practical indicator of healthy weight,
+                it is not suited for every person. Specific groups should
+                carefully consider their BMI outcomes, and in certain cases, the
+                measurement may not be beneficial to use.
+            </p>
+            <div>
+                <img src={genderIcon} alt="" />
+                <h3>Gender</h3>
+                <p>
+                    The development and body fat composition of girls and boys
+                    vary with age. Consequently, a child's age and gender are
+                    considered when evaluating their BMI.
+                </p>
+            </div>
+            <div>
+                <img src={ageIcon} alt="" />
+                <h3>Age</h3>
+                <p>
+                    In aging individuals, increased body fat and muscle loss may
+                    cause BMI to underestimate body fat content.
+                </p>
+            </div>
+            <div>
+                <img src={muscleIcon} alt="" />
+                <h3>Muscle</h3>
+                <p>
+                    BMI may misclassify muscular individuals as overweight or
+                    obese, as it doesn't differentiate muscle from fat.
+                </p>
+            </div>
+            <div>
+                <img src={pregnancyIcon} alt="" />
+                <h3>Pregnancy</h3>
+                <p>
+                    Expectant mothers experience weight gain due to their
+                    growing baby. Maintaining a healthy pre-pregnancy BMI is
+                    advisable to minimise health risks for both mother and
+                    child.
+                </p>
+            </div>
+            <div>
+                <img src={raceIcon} alt="" />
+                <h3>Race</h3>
+                <p>
+                    Certain health concerns may affect individuals of some Black
+                    and Asian origins at lower BMIs than others. To learn more,
+                    it is advised to discuss this with your GP or practice
+                    nurse.
+                </p>
+            </div>
+        </main>
+    </body>
+</html>
