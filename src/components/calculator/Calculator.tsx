@@ -10,14 +10,14 @@ const Calculator = () => {
 
     const resultsRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        if (!resultsRef.current) {
-            throw Error("resultsRef has no current value");
-        }
-        console.log(resultsRef.current);
-        const height = resultsRef.current.offsetHeight / 2;
-        resultsRef.current.style.setProperty("--rad", `${height}px`);
-    }, [resultsRef]);
+    // useEffect(() => {
+    //     if (!resultsRef.current) {
+    //         throw Error("resultsRef has no current value");
+    //     }
+    //     console.log(resultsRef.current);
+    //     const height = resultsRef.current.offsetHeight / 2;
+    //     resultsRef.current.style.setProperty("--rad", `${height}px`);
+    // }, [resultsRef]);
 
     return (
         <form
