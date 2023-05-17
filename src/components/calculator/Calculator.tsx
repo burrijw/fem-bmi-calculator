@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Radios from "../radios/Radios";
 import TextInput from "../text-input/TextInput";
 import clsx from "clsx";
+import useSize from "@react-hook/size";
 
 const Calculator = () => {
     const [unit, setUnit] = useState("metric");
@@ -9,15 +10,12 @@ const Calculator = () => {
     const options = ["imperial", "metric"];
 
     const resultsRef = useRef<HTMLDivElement>(null);
+    const [resultsX, resultsY] = useSize(resultsRef);
 
-    // useEffect(() => {
-    //     if (!resultsRef.current) {
-    //         throw Error("resultsRef has no current value");
-    //     }
-    //     console.log(resultsRef.current);
-    //     const height = resultsRef.current.offsetHeight / 2;
-    //     resultsRef.current.style.setProperty("--rad", `${height}px`);
-    // }, [resultsRef]);
+    useEffect(() => {
+        resultsRef.current?.style.setProperty("--rad", `${resultsY / 2}px`);
+        console.log("The --rad is now ", resultsY / 2);
+    }, [resultsY]);
 
     return (
         <form
