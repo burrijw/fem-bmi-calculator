@@ -26,7 +26,7 @@ import Calculator from "../components/calculator/Calculator";
             href="/favicon-32x32.png"
             type="image/x-icon"
         />
-        <link rel="stylesheet" href="../../globalStyles.css">
+        <link rel="stylesheet" href="../../globalStyles.css" />
         <title>BMI Calculator ~ Frontend Mentor Solution</title>
     </head>
     <body class="px-6 pb-24 pt-8">
@@ -51,7 +51,7 @@ import Calculator from "../components/calculator/Calculator";
                 determinant of a healthy weight, it offers a valuable starting
                 point to evaluate your overall health and well-being.
             </p>
-            <Calculator client:load />
+            <Calculator client:only />
             <img src={manEatingImg} alt="man eating with chopsticks" />
             <h2>What your BMI result means</h2>
             <p>
