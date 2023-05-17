@@ -42,6 +42,7 @@ module.exports = {
       },
             borderRadius: {
                 accent: "35px",
+                bullet: "1rem 3.75rem 3.75rem 1rem",
             },
             boxShadow: {
                 accent: "16px 32px 56px rgba(143, 174, 207, 0.25)",
