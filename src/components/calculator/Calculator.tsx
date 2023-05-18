@@ -3,19 +3,34 @@ import Radios from "../radios/Radios";
 import TextInput from "../text-input/TextInput";
 import clsx from "clsx";
 import useSize from "@react-hook/size";
+import type { Measurement, Result } from "./calculator.models";
 
 const Calculator = () => {
+    //
+
     const [unit, setUnit] = useState("metric");
+    const [measurements, setMeasurements] = useState<Measurement>(
+        {} as Measurement
+    );
+    const [result, setResult] = useState<Result>({} as Result);
 
-    const options = ["imperial", "metric"];
-
-    const resultsRef = useRef<HTMLDivElement>(null);
-    const [resultsX, resultsY] = useSize(resultsRef);
+    /**
+     *  Result Container (#results) border radius needs to be calculated on re-size using the following Ref and useSize hook.
+     *  As the height of the container changes, the custom property '--rad' (radius) changes to ensure the "bullet"
+     *  shape stays intact.
+     */
+    // Start results container fix
+    const resultsContainerRef = useRef<HTMLDivElement>(null);
+    const [resultsContainerWidth, resultsContainerHeight] =
+        useSize(resultsContainerRef);
 
     useEffect(() => {
-        resultsRef.current?.style.setProperty("--rad", `${resultsY / 2}px`);
-        console.log("The --rad is now ", resultsY / 2);
-    }, [resultsY]);
+        resultsContainerRef.current?.style.setProperty(
+            "--rad",
+            `${resultsContainerHeight / 2}px`
+        );
+    }, [resultsContainerHeight]);
+    //  End results container fix
 
     return (
         <form
@@ -26,55 +41,31 @@ const Calculator = () => {
             </h2>
 
             {/* Measurement select */}
-            <Radios options={["Metric", "Imperial"]} />
+            <Radios options={["metric", "imperial"]} setUnit={setUnit} />
 
             {/* Text inputs */}
-            <div className="col-span-full flex flex-col gap-4">
-                <label className="text-body-sm text-metal-600" htmlFor="height">
-                    Height
-                </label>
-                <div
-                    className={
-                        "relative before:absolute before:inset-0 before:my-auto before:ml-auto before:mr-6 before:h-min before:w-min before:text-heading-md before:text-blue before:content-['cm']"
-                    }>
-                    <input
-                        className={
-                            "w-full rounded-xl border border-metal-200 px-6 py-5 text-heading-md text-metal-800 placeholder:text-metal-800 placeholder:opacity-25"
-                        }
-                        type="number"
-                        min={0}
-                        id="height"
-                        name="height"
-                        placeholder="0"
-                    />
-                </div>
-            </div>
-            <div className="col-span-full flex flex-col gap-4">
-                <label className="text-body-sm text-metal-600" htmlFor="weight">
-                    Weight
-                </label>
-                <div
-                    className={
-                        "relative before:absolute before:inset-0 before:my-auto before:ml-auto before:mr-6 before:h-min before:w-min before:text-heading-md before:text-blue before:content-['kg']"
-                    }>
-                    <input
-                        className={
-                            "w-full rounded-xl border border-metal-200 px-6 py-5 text-heading-md text-metal-800 placeholder:text-metal-800 placeholder:opacity-25"
-                        }
-                        type="number"
-                        min={0}
-                        id="weight"
-                        name="weight"
-                        placeholder="0"
-                    />
-                </div>
-            </div>
+
+            {unit === "metric" && (
+                <>
+                    <TextInput label="Height" id="height-cm" unit="cm" />
+                    <TextInput label="Weight" id="weight-kg" unit="kg" />
+                </>
+            )}
+            {unit === "imperial" && (
+                <>
+                    <div className="col-span-full flex items-end gap-4">
+                        <TextInput label="Height" id="height-ft" unit="ft" />
+                        <TextInput id="height-inch" unit="in" />
+                    </div>
+                    <TextInput label="Weight" id="weight-lbs" unit="lbs" />
+                </>
+            )}
 
             {/* Results section */}
             <div
                 id="results"
                 className="col-span-full rounded-2xl bg-result-gradient p-8 text-white sm:rounded-l-2xl sm:rounded-r-[--rad]"
-                ref={resultsRef}>
+                ref={resultsContainerRef}>
                 <div>
                     <p className="mb-4 text-heading-md">Welcome!</p>
                     <p className="text-body-sm">
